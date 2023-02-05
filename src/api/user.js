@@ -1,16 +1,18 @@
 //获取用户信息
 import axiosReq from '@/utils/axios-req'
+import { userInfoSource } from '../config/user';
 export const userInfoReq = () => {
-  return new Promise((resolve) => {
-    const reqConfig = {
-      url: '/basis-func/user/getUserInfo',
-      params: { plateFormId: 2 },
-      method: 'post'
-    }
-    axiosReq(reqConfig).then(({ data }) => {
-      resolve(data)
-    })
-  })
+  return userInfoSource;
+  // return new Promise((resolve) => {
+  //   const reqConfig = {
+  //     url: '/basis-func/user/getUserInfo',
+  //     params: { plateFormId: 2 },
+  //     method: 'post'
+  //   }
+  //   axiosReq(reqConfig).then(({ data }) => {
+  //     resolve(data)
+  //   })
+  // })
 }
 
 //登录

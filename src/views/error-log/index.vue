@@ -91,8 +91,8 @@ const selectPageReq = () => {
     method: 'get'
   }
   tableListReq(reqConfig).then(({ data }) => {
-    tableListData.value = data.records
-    totalPage.value = data.total
+    // tableListData.value = data.records
+    // totalPage.value = data.total
   })
 }
 //重置

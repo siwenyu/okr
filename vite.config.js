@@ -14,10 +14,18 @@ const prodMock = setting.openProdMock
 // import { visualizer } from 'rollup-plugin-visualizer'
 const pathSrc = path.resolve(__dirname, 'src')
 
+
+
 //插件测试
 import vitePluginSetupExtend from './src/plugins/vite-plugin-setup-extend/index'
 
 export default defineConfig(({ command, mode }) => {
+
+  // 默认
+  // const targetUrl = env.VITE_PROXY_URL;
+  const targetUrl = 'http://9.135.12.188:18081/';
+
+  console.log(command);
   const env = loadEnv(mode, process.cwd(), '') //获取环境变量
 
   return {
@@ -31,13 +39,13 @@ export default defineConfig(({ command, mode }) => {
     server: {
       hmr: { overlay: false }, //设置 server.hmr.overlay 为 false 可以禁用开发服务器错误的屏蔽。方便错误查看
       port: 5003, // 类型： number 指定服务器端口;
-      open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
+      open: true, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
       host: true,
       https: false,
       //https://cn.vitejs.dev/config/server-options.html#server-proxy
       proxy: {
         [env.VITE_PROXY_BASE_URL]: {
-          target: env.VITE_PROXY_URL,
+          target:  targetUrl,
           changeOrigin: true,
           rewrite: (path) => path.replace(new RegExp(`^${env.VITE_PROXY_BASE_URL}`), '')
         }

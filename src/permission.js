@@ -13,6 +13,7 @@ router.beforeEach(async (to) => {
   const basicStore = useBasicStore()
   //1.判断token
   if (basicStore.token) {
+    console.log(1);
     if (to.path === '/login') {
       return '/'
     } else {

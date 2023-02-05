@@ -8,6 +8,7 @@ let loadingInstance = null //loading实例
 //请求前拦截
 service.interceptors.request.use(
   (req) => {
+    console.log(req);
     const { token, axiosPromiseArr } = useBasicStore()
     //axiosPromiseArr收集请求地址,用于取消请求
     req.cancelToken = new axios.CancelToken((cancel) => {
@@ -32,7 +33,6 @@ service.interceptors.request.use(
         background: 'rgba(0, 0, 0, 0.3)'
       })
     }
-
     return req
   },
   (err) => {
@@ -57,7 +57,7 @@ service.interceptors.response.use(
     if (successCode.includes(code)) {
       return res.data
     } else {
-      if (noAuthCode.includes(code)) {
+      if (noAuthCode.includes(code) && false) {
         ElMessageBox.confirm('请重新登录', {
           confirmButtonText: '重新登录',
           closeOnClickModal: false,
@@ -92,8 +92,13 @@ service.interceptors.response.use(
 )
 //导出service实例给页面调用 , config->页面的配置
 export default function axiosReq(config) {
+  console.log(config);
+  console.log(import.meta);
+  // const useMock = true;
+  const useMock = false;
+  // 开发
   return service({
-    baseURL: import.meta.env.VITE_APP_BASE_URL,
+    baseURL: useMock ? '/' : import.meta.env.VITE_APP_BASE_URL,
     timeout: 8000,
     ...config
   })

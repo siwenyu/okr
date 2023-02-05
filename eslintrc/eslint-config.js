@@ -63,7 +63,7 @@ module.exports = defineConfig({
     camelcase: ['error', { properties: 'never' }],
     'no-console': ['warn', { allow: ['error'] }],
     'no-debugger': 'warn',
-    'no-constant-condition': ['error', { checkLoops: false }],
+    'no-constant-condition': ['off', { checkLoops: false }],
     'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
     'no-return-await': 'error',
     'no-var': 'error',

@@ -28,6 +28,7 @@
     "getCurrentScope": true,
     "getLangInstance": true,
     "getQueryParam": true,
+    "getStrategyList": true,
     "h": true,
     "inject": true,
     "isExternal": true,

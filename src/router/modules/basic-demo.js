@@ -18,6 +18,18 @@ const BasicDemo = {
       meta: { title: 'Pinia' }
     },
     {
+      path: 'g6',
+      component: () => import('@/views/basic-demo/g6/index.vue'),
+      name: 'g6',
+      meta: { title: 'g6' }
+    },
+    {
+      path: 'g61',
+      component: () => import('@/views/basic-demo/g61/index.vue'),
+      name: 'g61',
+      meta: { title: 'g61' }
+    },
+    {
       path: 'mock',
       component: () => import('@/views/basic-demo/mock/index.vue'),
       name: 'Mock',

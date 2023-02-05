@@ -49,6 +49,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { useBasicStore } from '@/store/basic'
 import { elMessage, useElement } from '@/hooks/use-element'
 import { loginReq } from '@/api/user'
+import { loginInfo } from '@/config/user'
+
 
 /* listen router change and set the query  */
 const { settings } = useBasicStore()
@@ -56,7 +58,7 @@ const { settings } = useBasicStore()
 const formRules = useElement().formRules
 //form
 const subForm = reactive({
-  keyword: 'panda',
+  keyword: 'admin',
   password: '123456'
 })
 const state = reactive({
@@ -88,7 +90,7 @@ watch(
  * */
 let subLoading = $ref(false)
 //tip message
-let tipMessage = $ref('')
+const tipMessage = $ref('')
 //sub form
 const refLoginForm = $ref(null)
 const handleLogin = () => {
@@ -101,18 +103,26 @@ const router = useRouter()
 const basicStore = useBasicStore()
 
 const loginFunc = () => {
-  loginReq(subForm)
-    .then(({ data }) => {
-      elMessage('登录成功')
-      basicStore.setToken(data?.jwtToken)
-      router.push('/')
-    })
-    .catch((err) => {
-      tipMessage = err?.msg
-    })
-    .finally(() => {
-      subLoading = false
-    })
+  elMessage('登录成功');
+  const res = loginInfo;
+  console.log(res);
+  basicStore.setToken(res.data?.jwtToken)
+  router.push('/')
+  // loginReq(subForm)
+  //   .then(({ data }) => {
+  //     console.log(data);
+  //     elMessage('登录成功')
+  //     const res = loginInfo;
+  //     console.log(res);
+  //     basicStore.setToken(res.data?.jwtToken)
+  //     router.push('/')
+  //   })
+  //   .catch((err) => {
+  //     tipMessage = err?.msg
+  //   })
+  //   .finally(() => {
+  //     subLoading = false
+  //   })
 }
 /*
  *  password show or hidden

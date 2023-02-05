@@ -17,18 +17,19 @@
     <div v-if="settings.ShowDropDown" class="right-menu rowSC">
       <el-dropdown trigger="click" size="medium">
         <div class="avatar-wrapper">
-          <img src="https://github.jzfai.top/file/images/nav-right-logo.gif" class="user-avatar" />
+          <!-- <img src="https://github.jzfai.top/file/images/nav-right-logo.gif" class="user-avatar" /> -->
+          <span>{{ basicStore.userInfo.username }}</span>
           <CaretBottom style="width: 1em; height: 1em; margin-left: 4px" />
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <router-link to="/">
+            <!-- <router-link to="/">
               <el-dropdown-item>{{ langTitle('Home') }}</el-dropdown-item>
-            </router-link>
-            <a target="_blank" href="https://github.com/jzfai/vue3-admin-template">
+            </router-link> -->
+            <!-- <a target="_blank" href="https://github.com/jzfai/vue3-admin-template">
               <el-dropdown-item>{{ langTitle('Github') }}</el-dropdown-item>
-            </a>
-            <!--<el-dropdown-item>修改密码</el-dropdown-item>-->
+            </a> -->
+            <el-dropdown-item>修改密码</el-dropdown-item>
             <el-dropdown-item divided @click="loginOut">{{ langTitle('login out') }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -49,6 +50,7 @@ import { useBasicStore } from '@/store/basic'
 import { langTitle } from '@/hooks/use-common'
 
 const basicStore = useBasicStore()
+console.log(basicStore);
 const { settings, sidebar, setToggleSideBar } = basicStore
 const toggleSideBar = () => {
   setToggleSideBar()
@@ -57,7 +59,7 @@ const toggleSideBar = () => {
 const router = useRouter()
 const loginOut = () => {
   elMessage('退出登录成功')
-  router.push(`/login?redirect=/`)
+  router.push(`/login`)
   nextTick(() => {
     resetState()
   })

@@ -29,6 +29,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getLangInstance: typeof import('../src/hooks/use-common.js')['getLangInstance']
   const getQueryParam: typeof import('../src/hooks/use-self-router.js')['getQueryParam']
+  const getStrategyList: typeof import('../src/api/stock.js')['getStrategyList']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isExternal: typeof import('../src/hooks/use-layout.js')['isExternal']
